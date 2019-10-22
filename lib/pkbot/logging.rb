@@ -1,0 +1,2 @@
+module Pkbot::Logging
+end

@@ -1,0 +1,3 @@
+#! /usr/bin/env ruby
+$BO_YEAR = 2045
+require_relative "pk.rb"

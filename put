@@ -1,0 +1,25 @@
+#! /usr/bin/env ruby
+file = File.expand_path '../lib/pkbot/version.rb', __FILE__
+
+text = File.read(file).gsub(/BUILD_TIME = ".*"/, "BUILD_TIME = \"#{Time.now.to_s}\"")
+File.open(file, "w") {|file| file.write text}
+
+cmds = [
+  "cd ~/Projects/pkbot_tmp",
+  "rm -rf ~/Projects/pkbot_tmp/*",
+  "git clone --depth=1 ../pkbot",
+  "cd pkbot",
+  "cp #{file} lib/pkbot",
+  "gem build pkbot.gemspec",
+  # "cp pkbot-0.0.1.gem ~/Dropbox",
+  # "rm pkbot-0.0.1.gem",
+  "rm -rf ./.git",
+  
+  "cd ..",
+  "zip -r pkbot.zip pkbot",
+  "cp pkbot.zip ~/Dropbox",
+]
+
+# cmds.each {|cmd| `#{cmd}`}
+`#{cmds.join('&&')}`
+

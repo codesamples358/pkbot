@@ -1,0 +1,2 @@
+#! /bin/bash
+gem build pkbot.gemspec; gem install pkbot-0.0.1.gem
